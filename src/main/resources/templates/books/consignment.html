@@ -1,0 +1,38 @@
+<html layout:decorate="~{layout/layout}">
+<div layout:fragment="content" class="consignment">
+    <h2>도서 위탁</h2>
+    <form class="consignment-form" method="post">
+        <div>
+            <label for="book-name" >도서명</label>
+            <div>
+                <input name="bookName" type="text" id="book-name" placeholder="우도"
+                       title="올바른 도서명을 입력해 주세요" minlength="1" required/>
+                <div role="alert" class="text-warning"></div>
+            </div>
+        </div>
+        <div>
+            <label for="ISBN" class="form-label">ISBN</label>
+            <div>
+                <div>
+                    <input type="text" id="ISBN" name="ISBN"
+                           placeholder="ISBN 번호 13자리" title="10~13자리의 ISBN 번호를 입력해 주세요" pattern="^[0-9]{10,13}$" minlength="10" maxlength="13" required/>
+                    <div role="alert" class="text-warning"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="rental-price" >대여 가격</label>
+            <div>
+                <div>
+                    <input type="text" id="rental-price" name="rentPrice"
+                           placeholder="1000" title="가격을 작성해 주세요" pattern="^[0-9]{1,10}$" minlength="1" maxlength="10" required/>
+                    <div role="alert" class="text-warning"></div>
+                </div>
+            </div>
+        </div>
+        <button sec:authorize="isAnonymous()" disabled>위탁 하기</button>
+        <button type="submit" sec:authorize="isAuthenticated()" class="consignment-button">위탁 하기</button>
+    </form>
+    <script th:src="@{/js/consignment.js}" type="module"></script>
+</div>
+</html>

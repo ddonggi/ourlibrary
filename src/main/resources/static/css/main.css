@@ -1,0 +1,40 @@
+.red{
+    border:1px solid red;
+    color: red;
+}
+.flex{
+    display: flex;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-container{
+    justify-content: space-between;
+}
+.navbar-left{
+    font-size: 30px;
+    font-weight: 800;
+}
+.navbar-container a{
+    color: black;
+    text-decoration: none;
+}
+
+
+.book-container{
+    min-width: 240px;
+}
+.book-block{
+    border:1px solid black;
+    min-width: 240px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.gap-rem{
+    gap: 1rem;
+}
+.book-header,.book-footer{
+    justify-content: space-between;
+}

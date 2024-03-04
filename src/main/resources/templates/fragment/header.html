@@ -1,0 +1,23 @@
+<th:block th:fragment="header">
+    <nav class="navbar">
+        <div class="navbar-container flex">
+            <div class="navbar-left">
+                    <a href="/">
+                        <strong>우리집은 도서관</strong>
+                    </a>
+            </div>
+            <div class="navbar-right">
+                <!-- 비로그인 사용자만 보이는 항목-->
+                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/signup}">회원가입</a>
+                <!-- 로그인된 사용자만 보이는 항목-->
+                <div sec:authorize="isAuthenticated()" class="flex">
+                    <div th:if="${siteUser!=null}" th:text="|${siteUser.name} 님|" class="user-name"></div>
+                    <div>
+                            <a th:href="@{/user/logout}">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</th:block>

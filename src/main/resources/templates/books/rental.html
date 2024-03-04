@@ -1,0 +1,47 @@
+<html layout:decorate="~{layout/layout}">
+<div layout:fragment="content" class="consignment">
+    <h2>도서 대여</h2>
+    <section>
+        <div>
+            <label>
+                <input type="radio" class="" name="bookList" value="0" checked/>
+            </label>대여 많은순
+            <label>
+                <input type="radio" class="" name="bookList" value="1">
+            </label>낮은 가격순
+            <label>
+                <input type="radio" class="" name="bookList" value="2">
+            </label>최근 등록순
+        </div>
+        <div class="flex-column gap-rem book-list">
+            <label class="flex book-container" th:if="${paging}" th:each="book,loop : ${paging}">
+                <input th:if="${book.rentAvailable}" type="checkbox" name="book" th:value="${book.id}">
+                <input th:unless="${book.rentAvailable}" type="checkbox" name="book" th:value="${book.id}" disabled>
+                <div th:if="${book.rentAvailable}" class="book-block">
+                    <div class="book-header flex">
+                        <div th:text="${book.bookName}">세이노의 가르침</div>
+                        <div th:text="|${book.rentPrice} 원|">2000</div>
+                    </div>
+                    <div class="book-footer flex">
+                        <div th:text="|ISBN : ${book.ISBN}|">ISBN:0000000000</div>
+                        <div th:text="|위탁자 : ${book.author.name}|">위탁자:fff</div>
+                    </div>
+                </div>
+                <div th:unless="${book.rentAvailable}" class="book-block red">
+                    <div class="book-header flex">
+                        <div th:text="${book.bookName}">세이노의 가르침</div>
+                        <div th:text="|${book.rentPrice} 원|">2000</div>
+                    </div>
+                    <div class="book-footer flex">
+                        <div th:text="|ISBN : ${book.ISBN}|">ISBN:0000000000</div>
+                        <div th:text="|위탁자 : ${book.author.name}|">위탁자:fff</div>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <button sec:authorize="isAnonymous()" disabled>대여하기</button>
+        <button type="submit" sec:authorize="isAuthenticated()" class="rent-button">대여하기</button>
+    </section>
+    <script th:src="@{/js/rental.js}" type="module"></script>
+</div>
+</html>

@@ -1,0 +1,20 @@
+<html layout:decorate="~{layout/layout}">
+<div layout:fragment="content" class="login">
+    <div class="signup-container">
+        <h2>로그인</h2>
+        <form th:action="@{/user/login}" method="post">
+            <div class="login-email">
+                <label for="email" class="form-label">이메일</label>
+                <input type="email" name="email" id="email" class="input-block-sm" placeholder="이메일 입력">
+            </div>
+            <div class="login-password">
+                <label for="password" class="form-label">비밀번호</label>
+                <input type="password" name="password" id="password"
+                       pattern="^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]{6,10}|(?=.*[a-z])(?=.*[0-9])[a-z0-9]{6,10}|(?=.*[A-Z])(?=.*[a-z])[A-Za-z]{6,10}|(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9]{6,10}$"
+                       placeholder="비밀번호 입력" minlength="6" maxlength="10">
+            </div>
+            <button>로그인</button>
+        </form>
+    </div>
+</div>
+</html>
