@@ -67,7 +67,7 @@ public class BookService {
         for (Book book : bookList) {
             if (book.getRentAvailable()) {//대여 가능할때만
                 rentalRepository.save(Rental.builder()
-                                .limitDate(LocalDateTime.now().plusDays(7))
+                                .limitDate(LocalDateTime.now().plusSeconds(10))
                                 .rentalDate(LocalDateTime.now())
                                 .returnDate(null)
                                 .book(book)
@@ -86,7 +86,8 @@ public class BookService {
             if (!book.getRentAvailable()) {//반납 가능 할때만
 
 //                Rental rental = rentalRepository.findRentalByBookIdAndBorrowerId(book.getId(),borrower.getId());
-                Rental rental = rentalRepository.findByBorrowerIdAndBookIdAndRentalDateBetween(borrower.getId(),book.getId(),LocalDateTime.now().minusDays(8),LocalDateTime.now().plusDays(8));
+                //현재보다 20초 전후에 있는 도서
+                Rental rental = rentalRepository.findByBorrowerIdAndBookIdAndRentalDateBetween(borrower.getId(),book.getId(),LocalDateTime.now().minusSeconds(20),LocalDateTime.now().plusSeconds(20));
 //                Rental rental = rentalRepository.findByBorrowerIdAndRentalDateBetweenAndLimitDateAfter(book.getId(),borrower.getId());
 
                 rentalRepository.save(
