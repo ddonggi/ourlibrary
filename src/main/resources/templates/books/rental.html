@@ -39,7 +39,7 @@
                 </div>
             </label>
         </div>
-        <button sec:authorize="isAnonymous()" disabled>대여하기</button>
+        <button sec:authorize="isAnonymous()" class="rent-button" disabled>대여하기</button>
         <button type="submit" sec:authorize="isAuthenticated()" class="rent-button">대여하기</button>
     </section>
     <script th:src="@{/js/rental.js}" type="module"></script>
